@@ -48,6 +48,7 @@ export function App() {
       const combinedData = {
         ...urlParams,
         image: imageDataURL,
+        requisitions: "driver"
       };
       console.log('Data to be sent:', combinedData);
   

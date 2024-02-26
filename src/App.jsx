@@ -47,7 +47,7 @@ export function App() {
       // Combine URL parameters and captured image data
       const combinedData = {
         ...urlParams,
-        visitorImage: imageDataURL,
+        image: imageDataURL,
       };
       console.log('Data to be sent:', combinedData);
   

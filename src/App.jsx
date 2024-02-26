@@ -35,45 +35,69 @@ export function App() {
   
   const captureImage = () => {
     if (videoRef.current && canvasRef.current) {
-      const video = videoRef.current;
-      const canvas = canvasRef.current;
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      const context = canvas.getContext('2d');
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const imageDataURL = canvas.toDataURL('image/jpeg');
-      console.log('Captured Image:', imageDataURL);
-  
-      // Combine URL parameters and captured image data
-      const combinedData = {
-        ...urlParams,
-        image: imageDataURL,
-        requisitions: "driver"
-      };
-      console.log('Data to be sent:', combinedData);
-  
-      // Enviar datos al servidor
-      fetch('https://089b-139-185-33-209.ngrok-free.app/createImage', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(combinedData),
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Server response:', data);
-      })
-      .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-      });
+        const video = videoRef.current;
+        const canvas = canvasRef.current;
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imageDataURL = canvas.toDataURL('image/jpeg');
+        console.log('Captured Image:', imageDataURL);
+
+        // Combine URL parameters and captured image data
+        const combinedData = {
+            ...urlParams,
+            image: imageDataURL,
+            requisitions: "driver"
+        };
+        console.log('Data to be sent:', combinedData);
+
+        // Enviar datos al servidor con un método POST
+        fetch('https://089b-139-185-33-209.ngrok-free.app/createImage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(combinedData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Server response:', data);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+
+        // Realizar otro fetch con un método GET incluyendo los parámetros en la URL
+        const { firstName, lastName, email } = urlParams;
+        const url = `https://tu-endpoint-aqui.com/otro-endpoint?requisitions=request.args.get('requisitions')&firstname=${firstName}&lastname=${lastName}&email=${email}`;
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from GET request:', data);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
     }
-  };
+};
+
   
 
   

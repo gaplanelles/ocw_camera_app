@@ -43,14 +43,37 @@ export function App() {
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
       const imageDataURL = canvas.toDataURL('image/jpeg');
       console.log('Captured Image:', imageDataURL);
+  
       // Combine URL parameters and captured image data
       const combinedData = {
         ...urlParams,
         visitorImage: imageDataURL,
       };
       console.log('Data to be sent:', combinedData);
+  
+      // Enviar datos al servidor
+      fetch('http://localhost:5000/createImage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(combinedData),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Server response:', data);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
     }
   };
+  
 
   
   const getUrlParams = () => {

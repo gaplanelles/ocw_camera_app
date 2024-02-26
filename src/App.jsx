@@ -32,7 +32,7 @@ export function App() {
     setCameraStarted(false);
   };
 
-  /
+  
   const captureImage = () => {
     if (videoRef.current && canvasRef.current) {
       const video = videoRef.current;

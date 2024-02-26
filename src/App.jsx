@@ -75,7 +75,7 @@ export function App() {
 
         // Realizar otro fetch con un método GET incluyendo los parámetros en la URL
         const { firstName, lastName, email } = urlParams;
-        const url = `https://tu-endpoint-aqui.com/otro-endpoint?requisitions=request.args.get('requisitions')&firstname=${firstName}&lastname=${lastName}&email=${email}`;
+        const url = `https://274f-139-185-33-209.ngrok-free.app/get?requisitions=request.args.get('requisitions')&firstname=${firstName}&lastname=${lastName}&email=${email}`;
 
         fetch(url, {
             method: 'GET',

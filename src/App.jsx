@@ -52,7 +52,7 @@ export function App() {
       console.log('Data to be sent:', combinedData);
   
       // Enviar datos al servidor
-      fetch('http://localhost:5000/createImage', {
+      fetch('https://089b-139-185-33-209.ngrok-free.app/createImage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ export function App() {
           height: '50px'
         }} />
         
-        }
+        
         <div style={{
           position: 'absolute',
           bottom: '30px', 

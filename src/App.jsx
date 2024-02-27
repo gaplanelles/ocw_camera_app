@@ -53,7 +53,7 @@ export function App() {
         console.log('Data to be sent:', combinedData);
 
         // Enviar datos al servidor con un método POST
-        fetch('https://089b-139-185-33-209.ngrok-free.app/createImage', {
+        fetch('https://de4d-139-185-33-209.ngrok-free.app/createImage', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export function App() {
 
         // Realizar otro fetch con un método GET incluyendo los parámetros en la URL
         const { firstName, lastName, email } = urlParams;
-        const url = `https://274f-139-185-33-209.ngrok-free.app/get?requisitions=request.args.get('requisitions')&firstname=${firstName}&lastname=${lastName}&email=${email}`;
+        const url = `https://7ea4-139-185-33-209.ngrok-free.app/get?requisitions=request.args.get('requisitions')&firstname=${firstName}&lastname=${lastName}&email=${email}`;
 
         fetch(url, {
             method: 'GET',
